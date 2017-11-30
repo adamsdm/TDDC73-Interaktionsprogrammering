@@ -1,11 +1,14 @@
 package com.example.adam.accountregistration;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -18,56 +21,59 @@ public class AccountRegistration extends LinearLayout {
     private final Context context;
     private Button registerButton;
     private OnClickListener onRegistration;
+    private LinearLayout fieldsView;
 
     public AccountRegistration(Context con, AttributeSet attrs){
         super(con,attrs);
         this.context=con;
         init();
-
-
     }
 
     private void init(){
+
         LayoutInflater.from(getContext()).inflate(R.layout.account_registration, this);
 
+        // We always want a register button
         registerButton = findViewById(R.id.registerButton);
+        fieldsView = findViewById(R.id.fieldsLayout);
 
-        onRegistration = new OnClickListener() {
+        registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: NO_DEFAULT");
+                boolean isValid = validateInputs();
+
+                if(isValid){
+                    Log.d(TAG, "SUCCESSFULL!");
+                    //TODO: Call interface method to handle submit
+
+                }
             }
-        };
+        });
 
-        registerButton.setOnClickListener(onRegistration);
+
     }
 
-    public LinearLayout addRow(String text, View input, boolean isMandatory) {
-        // Create a row
-        LinearLayout tmpLayout = new LinearLayout(context);
-        tmpLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        tmpLayout.setOrientation(LinearLayout.HORIZONTAL);
+    // TODO: Implementation
+    private boolean validateInputs(){
 
-        // Text
-        TextView textView = new TextView(context);
-        textView.setText(text);
-        textView.setTextSize(18);
+        boolean isValid = true;
 
-        // Setup layout
-        input.setLayoutParams(new TableRow.LayoutParams(0, TableLayout.LayoutParams.WRAP_CONTENT, .7f));
-        textView.setLayoutParams(new TableRow.LayoutParams(0, TableLayout.LayoutParams.WRAP_CONTENT, .3f));
+        // For each input field....
+            // Validate
 
-        tmpLayout.addView(textView);
-        tmpLayout.addView(input);
 
-        return tmpLayout;
+        return isValid;
+
     }
 
-    public void setOnRegistration(OnClickListener o){
-        onRegistration = o;
-        registerButton.setOnClickListener(o);
+
+    public AccountRegistrationRow addRow(String hint,  View view){
+
+        AccountRegistrationRow row = new AccountRegistrationRow(this.context,hint, view);
+        fieldsView.addView(row);
+
+        return row;
     }
+
 
 }

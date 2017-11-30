@@ -21,14 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
         PasswordMeter pm = findViewById(R.id.passwordMeter);
 
+
+
         pm.minLength = 0;
         pm.canContainSpecialCharacters = true;
         pm.mustContainNumber = false;
         pm.mustContainUppercase = false;
 
         pm.setStrengthColors(new int[]{
-                    Color.GRAY,
-                    Color.GREEN,
+                Color.GRAY,
+                Color.GREEN,
                     Color.YELLOW,
                     Color.RED
                 });
