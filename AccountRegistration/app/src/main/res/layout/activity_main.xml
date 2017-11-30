@@ -19,7 +19,9 @@
         <com.example.adam.accountregistration.AccountRegistration
             android:id="@+id/accountRegistration"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.example.adam.accountregistration.AccountRegistration>
+            android:layout_height="match_parent">
+
+        </com.example.adam.accountregistration.AccountRegistration>
 
     </FrameLayout>
 

@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -13,46 +15,42 @@ import android.widget.TextView;
 
 import java.io.IOException;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by adamsoderstrom on 30/11/17.
  */
 
-public class AccountRegistrationRow extends TableLayout {
+public class RegistrationButtonRow extends RegistrationRow {
 
     private Context context;
-    private String title;
-    private View input;
-    public boolean isRequired = false;
+    private Button input;
 
-    public AccountRegistrationRow(Context con, String title, View input) {
+    public RegistrationButtonRow(Context con) {
         super(con);
         this.context = con;
-        this.title = title;
-        this.input = input;
+        this.input = new Button(con);
         init();
     }
 
     // TODO: Add image row
 
-    public AccountRegistrationRow(Context con, AttributeSet attrs, String title, View input) {
+    public RegistrationButtonRow(Context con, AttributeSet attrs) {
         super(con, attrs);
         this.context = con;
-        this.title = title;
-        this.input = input;
+        this.input = new Button(con);
         init();
     }
 
-    private void init(){
+    protected boolean validate(){ return true; }
 
+    protected void init(){
+        addView(this.input);
+    }
 
-        if(this.input instanceof TextView){
-            ((TextView) this.input).setHint(this.title);
-        } else if (this.input instanceof Button){
-            ( (Button) this.input ).setText(this.title);
-        }
-
-        addView(input);
-
+    @Override
+    public View getView() {
+        return this.input;
     }
 
 }

@@ -1,18 +1,15 @@
 package com.example.adam.accountregistration;
 
 import android.content.Context;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
@@ -22,6 +19,7 @@ public class AccountRegistration extends LinearLayout {
     private Button registerButton;
     private OnClickListener onRegistration;
     private LinearLayout fieldsView;
+    ArrayList<RegistrationRow> rows = new ArrayList<RegistrationRow>();
 
     public AccountRegistration(Context con, AttributeSet attrs){
         super(con,attrs);
@@ -40,39 +38,31 @@ public class AccountRegistration extends LinearLayout {
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isValid = validateInputs();
+                boolean isValid = validateAllInputs();
 
                 if(isValid){
-                    Log.d(TAG, "SUCCESSFULL!");
-                    //TODO: Call interface method to handle submit
-
+                    Toast.makeText(context, "Registration sucessfull!",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d(TAG, "FAIL :(((((");
                 }
             }
         });
-
-
     }
 
     // TODO: Implementation
-    private boolean validateInputs(){
+    private boolean validateAllInputs(){
 
         boolean isValid = true;
-
-        // For each input field....
-            // Validate
-
-
+        for(RegistrationRow r : rows){
+            if(!r.validate()) isValid = false;
+        }
         return isValid;
-
     }
 
-
-    public AccountRegistrationRow addRow(String hint,  View view){
-
-        AccountRegistrationRow row = new AccountRegistrationRow(this.context,hint, view);
+    public void addRow(RegistrationRow row ){
         fieldsView.addView(row);
-
-        return row;
+        rows.add(row);
     }
 
 
