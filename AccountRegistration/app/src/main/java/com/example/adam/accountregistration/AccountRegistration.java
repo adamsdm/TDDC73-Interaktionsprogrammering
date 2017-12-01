@@ -19,7 +19,7 @@ public class AccountRegistration extends LinearLayout {
     private Button registerButton;
     private OnClickListener onRegistration;
     private LinearLayout fieldsView;
-    ArrayList<RegistrationRow> rows = new ArrayList<RegistrationRow>();
+    ArrayList<Row> rows = new ArrayList<Row>();
 
     public AccountRegistration(Context con, AttributeSet attrs){
         super(con,attrs);
@@ -54,13 +54,13 @@ public class AccountRegistration extends LinearLayout {
     private boolean validateAllInputs(){
 
         boolean isValid = true;
-        for(RegistrationRow r : rows){
+        for(Row r : rows){
             if(!r.validate()) isValid = false;
         }
         return isValid;
     }
 
-    public void addRow(RegistrationRow row ){
+    public void addRow(Row row ){
         fieldsView.addView(row);
         rows.add(row);
     }

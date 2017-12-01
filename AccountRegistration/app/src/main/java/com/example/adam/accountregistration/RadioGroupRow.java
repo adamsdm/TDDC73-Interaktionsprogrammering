@@ -13,13 +13,13 @@ import android.widget.TableLayout;
  * Created by adamsoderstrom on 30/11/17.
  */
 
-public class RegistrationRadioGroupRow extends RegistrationRow {
+public class RadioGroupRow extends Row {
 
     private Context context;
     private RadioGroup input;
     private RadioButton lastRadioButton;
 
-    public RegistrationRadioGroupRow(Context con) {
+    public RadioGroupRow(Context con) {
         super(con);
         this.context = con;
         this.input = new RadioGroup(con);
@@ -28,7 +28,7 @@ public class RegistrationRadioGroupRow extends RegistrationRow {
 
     // TODO: Add image row
 
-    public RegistrationRadioGroupRow(Context con, AttributeSet attrs) {
+    public RadioGroupRow(Context con, AttributeSet attrs) {
         super(con, attrs);
         this.context = con;
         this.input = new RadioGroup(con);
@@ -48,6 +48,7 @@ public class RegistrationRadioGroupRow extends RegistrationRow {
             }
         });
     }
+
 
     protected boolean validate() {
 
@@ -71,5 +72,6 @@ public class RegistrationRadioGroupRow extends RegistrationRow {
     public View getView() {
         return this.input;
     }
+
 
 }

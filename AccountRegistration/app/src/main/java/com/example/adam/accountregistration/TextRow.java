@@ -17,7 +17,7 @@ import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
  * Created by adamsoderstrom on 30/11/17.
  */
 
-public class RegistrationTextRow extends RegistrationRow {
+public class TextRow extends Row {
 
     private Context context;
     private EditText input;
@@ -28,7 +28,7 @@ public class RegistrationTextRow extends RegistrationRow {
 
 
 
-    public RegistrationTextRow(Context con) {
+    public TextRow(Context con) {
         super(con);
         this.context = con;
         this.input = new EditText(con);
@@ -37,7 +37,7 @@ public class RegistrationTextRow extends RegistrationRow {
 
     // TODO: Add image row
 
-    public RegistrationTextRow(Context con, AttributeSet attrs) {
+    public TextRow(Context con, AttributeSet attrs) {
         super(con, attrs);
         this.context = con;
         this.input = new EditText(con);
