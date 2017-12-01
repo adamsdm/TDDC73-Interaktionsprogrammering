@@ -2,11 +2,14 @@ package com.example.adamsoderstrom.tddc73lab3;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import static android.content.ContentValues.TAG;
 
@@ -18,6 +21,8 @@ public class InteractiveSearcher extends LinearLayout{
     SuggestionBox suggestionBox;
     TextWatcher textWatcher;
     private int getId;
+    private PopupWindow popupWindow;
+
 
     public InteractiveSearcher(Context context){
         super(context);
@@ -30,9 +35,17 @@ public class InteractiveSearcher extends LinearLayout{
         input = new EditText(this.c);
         input.setHint("Enter name...");
         suggestionBox = new SuggestionBox(this.c, InteractiveSearcher.this);
+        popupWindow = new PopupWindow(suggestionBox,
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT
+        );
 
+        popupWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        popupWindow.setFocusable(false);
+        popupWindow.setOutsideTouchable(false);
+        popupWindow.setContentView(suggestionBox);
         this.addView(input);
-        this.addView(suggestionBox);
+
         getId = 0;
 
 
@@ -61,12 +74,18 @@ public class InteractiveSearcher extends LinearLayout{
                 getId++;
                 myTask = new JsonHTTPGet(getId, InteractiveSearcher.this);
                 myTask.execute(input , Integer.toString(getId));
-
-
             }
         };
 
         input.addTextChangedListener(textWatcher);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        popupWindow.showAsDropDown(this ,0, -14);
+
+
     }
 
     public void setText(String text){

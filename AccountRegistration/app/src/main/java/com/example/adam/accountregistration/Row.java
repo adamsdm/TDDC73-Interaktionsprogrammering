@@ -6,17 +6,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TableLayout;
 
-public abstract class RegistrationRow extends TableLayout {
+public abstract class Row extends TableLayout {
 
 
 
-    public RegistrationRow(Context con) {
+    public Row(Context con) {
         super(con);
     }
 
     // TODO: Add image row
 
-    public RegistrationRow(Context con, AttributeSet attrs) {
+    public Row(Context con, AttributeSet attrs) {
         super(con, attrs);
     }
 

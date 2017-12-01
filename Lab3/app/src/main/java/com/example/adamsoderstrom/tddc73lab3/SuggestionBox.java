@@ -66,8 +66,7 @@ public class SuggestionBox extends View {
         // Clear canvas
         canvas.drawColor(Color.TRANSPARENT);
 
-        p.setColor(Color.BLACK);
-        p.setAlpha(30);
+        p.setColor(Color.parseColor("#ffffff"));
 
         textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(FONTSIZE);

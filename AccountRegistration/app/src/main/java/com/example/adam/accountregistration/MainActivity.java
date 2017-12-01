@@ -2,11 +2,8 @@ package com.example.adam.accountregistration;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,33 +16,39 @@ public class MainActivity extends AppCompatActivity {
         AccountRegistration ar = findViewById(R.id.accountRegistration);
 
 
+        // Image
+        ImageRow img = new ImageRow(this, R.drawable.androidlogo);
+        img.setScaleX(0.5f);
+        img.setScaleY(0.5f);
+        ar.addRow(img);
+
         // Name input
-        RegistrationTextRow firstName = new RegistrationTextRow(this);
+        TextRow firstName = new TextRow(this);
         firstName.setRequired(true);
         ((EditText) firstName.getView()).setHint("Firstname");
         ar.addRow(firstName);
 
 
-        RegistrationTextRow surName = new RegistrationTextRow(this);
+        TextRow surName = new TextRow(this);
         surName.setRequired(true);
         ((EditText) surName.getView()).setHint("Surname");
         ar.addRow(surName);
 
 
-        RegistrationTextRow password = new RegistrationTextRow(this);
+        TextRow password = new TextRow(this);
         password.setRequired(true);
         password.setInputType(InputType.PASSWORD);
         ((EditText) password.getView()).setHint("Password");
         ar.addRow(password);
 
-        RegistrationTextRow email = new RegistrationTextRow(this);
+        TextRow email = new TextRow(this);
         email.setRequired(true);
         email.setInputType(InputType.EMAIL);
         ((EditText) email.getView()).setHint("Email");
         ar.addRow(email);
 
-        RegistrationTextRow phone = new RegistrationTextRow(this);
-        phone.setRequired(false);
+        TextRow phone = new TextRow(this);
+        phone.setRequired(true);
         phone.setInputType(InputType.PHONE);
         ((EditText) phone.getView()).setHint("Phone");
         ar.addRow(phone);
@@ -58,20 +61,15 @@ public class MainActivity extends AppCompatActivity {
         */
 
         // Radio group
-        RegistrationRadioGroupRow row3 = new RegistrationRadioGroupRow(this);
+        RadioGroupRow rg = new RadioGroupRow(this);
         RadioButton rbmale = new RadioButton(this);
         RadioButton rbfemale = new RadioButton(this);
         rbmale.setText("Male");
         rbfemale.setText("Female");
-        row3.addRadioButton(rbfemale);
-        row3.addRadioButton(rbmale);
+        rg.addRadioButton(rbfemale);
+        rg.addRadioButton(rbmale);
 
-
-
-
-
-
-        ar.addRow(row3);
+        ar.addRow(rg);
 
 
 

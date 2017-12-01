@@ -1,32 +1,20 @@
 package com.example.adam.accountregistration;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-
-import java.io.IOException;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by adamsoderstrom on 30/11/17.
  */
 
-public class RegistrationButtonRow extends RegistrationRow {
+public class ButtonRow extends Row {
 
     private Context context;
     private Button input;
 
-    public RegistrationButtonRow(Context con) {
+    public ButtonRow(Context con) {
         super(con);
         this.context = con;
         this.input = new Button(con);
@@ -35,7 +23,7 @@ public class RegistrationButtonRow extends RegistrationRow {
 
     // TODO: Add image row
 
-    public RegistrationButtonRow(Context con, AttributeSet attrs) {
+    public ButtonRow(Context con, AttributeSet attrs) {
         super(con, attrs);
         this.context = con;
         this.input = new Button(con);
